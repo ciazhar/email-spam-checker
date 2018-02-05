@@ -1,7 +1,7 @@
 package com.ciazhar.emailscamchecker.service
 
-import com.ciazhar.emailscamchecker.CheckScoreForm
-import com.ciazhar.emailscamchecker.CheckSpamForm
+import com.ciazhar.emailscamchecker.model.CheckScoreForm
+import com.ciazhar.emailscamchecker.model.CheckSpamForm
 import io.vertx.core.Vertx
 import io.vertx.core.json.Json
 import io.vertx.ext.web.RoutingContext

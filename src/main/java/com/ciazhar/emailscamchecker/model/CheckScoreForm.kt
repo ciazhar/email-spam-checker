@@ -1,4 +1,4 @@
-package com.ciazhar.emailscamchecker
+package com.ciazhar.emailscamchecker.model
 
 /**
  * Created by ciazhar on 02/02/18.
