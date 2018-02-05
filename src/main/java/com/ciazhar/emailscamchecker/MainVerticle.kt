@@ -1,52 +1,14 @@
 package com.ciazhar.emailscamchecker
 
+import com.ciazhar.emailscamchecker.service.EmailSpamCheckerServiceImpl
 import io.vertx.core.AbstractVerticle
 import io.vertx.core.http.RequestOptions
-import io.vertx.core.json.Json
 import io.vertx.ext.web.Router
-import io.vertx.ext.web.RoutingContext
 import io.vertx.ext.web.handler.BodyHandler
 
 class MainVerticle : AbstractVerticle() {
 
-    private fun checkScore(ctx : RoutingContext){
-
-        val client = vertx.createHttpClient()
-
-        val form = Json.decodeValue(ctx.bodyAsString, CheckScoreForm::class.java)
-
-        client.postAbs("https://spamcheck.postmarkapp.com/filter", { res ->
-            res.bodyHandler {
-                ctx.response()
-                    .setStatusCode(201)
-                    .putHeader("content-type", "application/json; charset=utf-8")
-                    .end(it.toJsonObject().encodePrettily())
-            }
-        })
-            .putHeader("content-type","application/json; charset=utf-8")
-            .setChunked(true)
-            .end(Json.encode(form))
-    }
-
-    private fun checkSpam(ctx: RoutingContext){
-
-        val client = vertx.createHttpClient()
-
-        val form = Json.decodeValue(ctx.bodyAsString, CheckSpamForm::class.java)
-
-        client.postAbs("https://oopspam.herokuapp.com", { res ->
-            res.bodyHandler {
-                ctx.response()
-                        .setStatusCode(201)
-                        .putHeader("content-type", "application/json; charset=utf-8")
-                        .end(it.toJsonObject().encodePrettily())
-            }
-        })
-                .putHeader("content-type","application/json; charset=utf-8")
-                .setChunked(true)
-                .end(Json.encode(form))
-
-    }
+    private val service by lazy { EmailSpamCheckerServiceImpl() }
 
     override fun start() {
 
@@ -54,8 +16,8 @@ class MainVerticle : AbstractVerticle() {
         val client = vertx.createHttpClient()
 
         router.route().handler(BodyHandler.create())
-        router.post("/api/check-score").handler { this.checkScore(it) }
-        router.post("/api/check-spam").handler { this.checkSpam(it) }
+        router.post("/api/check-score").handler { service.checkScore(it) }
+        router.post("/api/check-spam").handler { service.checkSpam(it) }
 
         client.post(RequestOptions(config()))
 
