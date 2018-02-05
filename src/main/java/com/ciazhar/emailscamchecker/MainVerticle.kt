@@ -28,13 +28,34 @@ class MainVerticle : AbstractVerticle() {
             .end(Json.encode(form))
     }
 
+    private fun checkSpam(ctx: RoutingContext){
+
+        val client = vertx.createHttpClient()
+
+        val form = Json.decodeValue(ctx.bodyAsString, CheckSpamForm::class.java)
+
+        client.postAbs("https://oopspam.herokuapp.com", { res ->
+            res.bodyHandler {
+                ctx.response()
+                        .setStatusCode(201)
+                        .putHeader("content-type", "application/json; charset=utf-8")
+                        .end(it.toJsonObject().encodePrettily())
+            }
+        })
+                .putHeader("content-type","application/json; charset=utf-8")
+                .setChunked(true)
+                .end(Json.encode(form))
+
+    }
+
     override fun start() {
 
         val router = Router.router(vertx)
         val client = vertx.createHttpClient()
 
         router.route().handler(BodyHandler.create())
-        router.post("/api/check").handler { this.checkScore(it) }
+        router.post("/api/check-score").handler { this.checkScore(it) }
+        router.post("/api/check-spam").handler { this.checkSpam(it) }
 
         client.post(RequestOptions(config()))
 
