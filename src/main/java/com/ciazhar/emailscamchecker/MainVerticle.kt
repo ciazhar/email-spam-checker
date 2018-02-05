@@ -13,7 +13,7 @@ class MainVerticle : AbstractVerticle() {
 
         val client = vertx.createHttpClient()
 
-        val mail = Json.decodeValue(ctx.bodyAsString,Email::class.java)
+        val form = Json.decodeValue(ctx.bodyAsString, CheckScoreForm::class.java)
 
         client.postAbs("https://spamcheck.postmarkapp.com/filter", { res ->
             res.bodyHandler {
@@ -25,7 +25,7 @@ class MainVerticle : AbstractVerticle() {
         })
             .putHeader("content-type","application/json; charset=utf-8")
             .setChunked(true)
-            .end(Json.encode(mail))
+            .end(Json.encode(form))
     }
 
     override fun start() {
