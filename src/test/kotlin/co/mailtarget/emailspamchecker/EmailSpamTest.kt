@@ -1,4 +1,4 @@
-package com.ciazhar.emailspamchecker
+package co.mailtarget.emailspamchecker
 
 import org.junit.Assert
 import org.junit.Test

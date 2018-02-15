@@ -1,6 +1,6 @@
-package com.ciazhar.emailspamchecker
+package co.mailtarget.emailspamchecker
 
-import com.ciazhar.emailspamchecker.service.EmailSpamCheckerServiceImpl
+import co.mailtarget.emailspamchecker.service.EmailSpamCheckerServiceImpl
 
 /**
  * Created by ciazhar on 15/02/18.

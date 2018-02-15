@@ -5,7 +5,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.ciazhar</groupId>
+  <groupId>co.mailtarget</groupId>
   <artifactId>email-scam-checker</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 

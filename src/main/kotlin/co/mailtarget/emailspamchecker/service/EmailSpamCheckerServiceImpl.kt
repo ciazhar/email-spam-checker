@@ -1,4 +1,4 @@
-package com.ciazhar.emailspamchecker.service
+package co.mailtarget.emailspamchecker.service
 
 import java.nio.file.Files
 import java.nio.file.Paths
