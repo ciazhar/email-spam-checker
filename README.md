@@ -14,7 +14,7 @@ Because this project not pushed to any public maven repos, you should install it
 add this project as dependency of your project
 ```xml
     <dependency>
-        <groupId>co.mailtarget.domainchecker</groupId>
+        <groupId>co.mailtarget.emailscamchecker</groupId>
         <artifactId>email-scam-checker</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </dependency>
