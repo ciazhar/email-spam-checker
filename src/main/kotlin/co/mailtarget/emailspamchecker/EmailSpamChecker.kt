@@ -16,8 +16,12 @@ object EmailSpamChecker {
 
     @JvmStatic
     fun isSpam(content : String) : Boolean{
-        return service.check(content).size != 0
+        return service.check(content).size > 10
     }
 
+    @JvmStatic
+    fun checkSpamScore(content : String) : Int{
+        return service.check(content).size
+    }
 
 }
