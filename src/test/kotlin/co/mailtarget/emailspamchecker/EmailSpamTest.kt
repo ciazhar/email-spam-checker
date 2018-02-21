@@ -18,7 +18,7 @@ class EmailSpamTest {
 
     @Test
     fun checkSpamAndMustReturnHashSetWithSpamWord(){
-        val str = "100% Vitamin C"
+        val str = "100% free viagra with Vitamin C $$$"
         val result = EmailSpamChecker.checkSpamAndReturnHashSet(str)
         Assert.assertTrue(!result.isEmpty())
     }
@@ -26,7 +26,7 @@ class EmailSpamTest {
 
     @Test
     fun checkSpamAndMustReturnTrue(){
-        val str = "100% Vitamin C"
+        val str = "100% free viagra with Vitamin C $$$ amazed amazing buy cancel cash cash bonus cashcashcash casino"
         val result = EmailSpamChecker.isSpam(str)
         Assert.assertEquals(true,result)
     }
@@ -36,5 +36,12 @@ class EmailSpamTest {
         val str = "Kotlination.com = Be Kotlineer - Be Simple - Be Connective"
         val result = EmailSpamChecker.isSpam(str)
         Assert.assertEquals(false,result)
+    }
+
+    @Test
+    fun checkSpamScore() {
+        val str = "100% Vitamin C viagra"
+        val result = EmailSpamChecker.checkSpamScore(str)
+        print(result)
     }
 }
