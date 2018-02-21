@@ -21,11 +21,15 @@ add this project as dependency of your project
 ```
 ## Usage
 ### Java / Kotlin
-Add this line of code 
+Add this line of code to get list of spam word containing in your content
 ```
     EmailSpamChecker.checkSpamAndReturnHashSet(str)
 ```
-or
+Add this line of code to check spam
 ```
     EmailSpamChecker.isSpam(str)
+```
+Add this line of code to check spam score
+```
+    EmailSpamChecker.checkSpamScore(str)
 ```
