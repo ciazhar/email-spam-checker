@@ -15,8 +15,18 @@ object EmailSpamChecker {
     }
 
     @JvmStatic
+    fun checkSpamAndReturnHashSet(content : String, additionalTriggerWord : HashSet<String>) : HashSet<String>{
+        return service.check(content,additionalTriggerWord)
+    }
+
+    @JvmStatic
     fun isSpam(content : String) : Boolean{
         return service.check(content).size > 10
+    }
+
+    @JvmStatic
+    fun isSpam(content : String, additionalTriggerWord : HashSet<String>) : Boolean{
+        return service.check(content,additionalTriggerWord).size > 10
     }
 
     @JvmStatic
@@ -24,4 +34,8 @@ object EmailSpamChecker {
         return service.check(content).size
     }
 
+    @JvmStatic
+    fun checkSpamScore(content : String, additionalTriggerWord : HashSet<String>) : Int{
+        return service.check(content,additionalTriggerWord).size
+    }
 }
