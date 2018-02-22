@@ -1,6 +1,6 @@
 package co.mailtarget.emailspamchecker.service
 
-import java.util.HashSet
+import kotlin.collections.HashSet
 
 /**
  * Created by ciazhar on 15/02/18.
@@ -8,4 +8,5 @@ import java.util.HashSet
  */
 interface EmailSpamCheckerService {
     fun check(content : String): HashSet<String>
+    fun check(content : String, additionalTriggerWord : HashSet<String>): HashSet<String>
 }
